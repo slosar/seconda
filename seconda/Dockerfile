@@ -49,4 +49,5 @@ CMD [ "/bin/bash" ]
 ## RUN conda config --add channels conda-forge; conda config --set channel_priority strict
 RUN conda install -c conda-forge pyccl pytorch
 RUN pip install healpy
+RUN pip install adstex
 
