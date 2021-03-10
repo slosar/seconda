@@ -18,7 +18,7 @@ MAINTAINER seconda@slosar.com
 # ---------------------------------------------------------
 # Anaconda stuff 
 # Dockerfile stuff from continuumio/anaconda3
-#   -- see https://github.com/ContinuumIO/docker-images/blob/master/anaconda3/debian/Dockerfile
+#   -- see https://github.com/ContinuumIO/docker-images/blob/master/anaconda3/debian/Dockerfile, Nov 30 commit
 #   -- added TZ fix below
 
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
@@ -50,4 +50,9 @@ CMD [ "/bin/bash" ]
 RUN conda install -c conda-forge pyccl pytorch
 RUN pip install healpy
 RUN pip install adstex
+
+# Minimal latex for matplotlib
+RUN apt-get install -y texlive-latex-base texlive-latex-extra cm-super-minimal dvipng
+
+ 
 
