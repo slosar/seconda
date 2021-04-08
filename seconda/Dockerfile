@@ -54,5 +54,11 @@ RUN pip install adstex
 # Minimal latex for matplotlib
 RUN apt-get install -y texlive-latex-base texlive-latex-extra cm-super-minimal dvipng
 
- 
+# galaxy simulation stuff
+RUN conda install -y -q -c conda-forge galsim numba ngmix esutil lsstdesc.weaklensingdeblending && \
+    git clone https://github.com/LSSTDESC/descwl-shear-sims.git && \
+    pip install --no-deps descwl-shear-sims/ && \
+    rm -rf descwl-shear-sims
+    
+
 
