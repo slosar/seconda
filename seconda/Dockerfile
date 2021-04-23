@@ -60,5 +60,7 @@ RUN conda install -y -q -c conda-forge galsim numba ngmix esutil lsstdesc.weakle
     pip install --no-deps descwl-shear-sims/ && \
     rm -rf descwl-shear-sims
     
-
+# for LuSEE work + get Ephem cache files
+RUN pip install git+https://github.com/telegraphic/pygdsm && python -c "from pygdsm import GlobalSkyModel" && \
+    conda install -y -q -c conda-forge spiceypy
 
