@@ -61,6 +61,6 @@ RUN conda install -y -q -c conda-forge galsim numba ngmix esutil lsstdesc.weakle
     rm -rf descwl-shear-sims
     
 # for LuSEE work + get Ephem cache files
-RUN pip install git+https://github.com/telegraphic/pygdsm && python -c "from pygdsm import GlobalSkyModel" && \
-    conda install -y -q -c conda-forge spiceypy
-
+RUN pip install git+https://github.com/mirochaj/ares && \
+    pip install git+https://github.com/telegraphic/pygdsm && python -c "from pygdsm import GlobalSkyModel" && \
+    conda install -y -q -c conda-forge spiceypy 
