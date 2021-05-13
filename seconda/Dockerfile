@@ -12,7 +12,7 @@
 # run nvidia-smi to see if it works
 #
 
-FROM nvidia/cuda:11.2.1-base
+FROM nvidia/cuda:11.3.0-base
 MAINTAINER seconda@slosar.com
 
 # ---------------------------------------------------------
@@ -61,6 +61,7 @@ RUN conda install -y -q -c conda-forge galsim numba ngmix esutil lsstdesc.weakle
     rm -rf descwl-shear-sims
     
 # for LuSEE work + get Ephem cache files
+# python -c "from pygdsm import GlobalSkyModel" && << not needed as we now see home
 RUN pip install git+https://github.com/mirochaj/ares && \
-    pip install git+https://github.com/telegraphic/pygdsm && python -c "from pygdsm import GlobalSkyModel" && \
+    pip install git+https://github.com/telegraphic/pygdsm && \
     conda install -y -q -c conda-forge spiceypy 
