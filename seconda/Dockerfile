@@ -57,8 +57,11 @@ RUN apt-get install -y texlive-latex-base texlive-latex-extra cm-super-minimal d
 # galaxy simulation stuff
 RUN conda install -y -q -c conda-forge galsim numba ngmix esutil lsstdesc.weaklensingdeblending && \
     git clone https://github.com/LSSTDESC/descwl-shear-sims.git && \
+    cd descwl-shear-sims  && \
+    git checkout 514fdb0ac572504a268a985db8e28efbb7a6b63b  && \
+    cd ..  && \
     pip install --no-deps descwl-shear-sims/ && \
-    rm -rf descwl-shear-sims
+    rm -rf descwl-shear-sims  
     
 # for LuSEE work + get Ephem cache files
 # python -c "from pygdsm import GlobalSkyModel" && << not needed as we now see home
