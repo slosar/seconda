@@ -46,13 +46,16 @@ CMD [ "/bin/bash" ]
 # ---------------------------------------------------------
 ### My config starts here
 
+# Minimal latex for matplotlib
+RUN apt update && apt install -y texlive-latex-base texlive-latex-extra cm-super-minimal dvipng
+
 ## RUN conda config --add channels conda-forge; conda config --set channel_priority strict
 RUN conda install -c conda-forge pyccl pytorch
-RUN pip install healpy
-RUN pip install adstex
 
-# Minimal latex for matplotlib
-RUN apt-get install -y texlive-latex-base texlive-latex-extra cm-super-minimal dvipng
+## PIP install basic stuff
+RUN pip install healpy && \
+    pip install adstex && \
+    pip install corner
 
 # galaxy simulation stuff
 RUN conda install -y -q -c conda-forge galsim numba ngmix esutil lsstdesc.weaklensingdeblending && \
@@ -67,4 +70,7 @@ RUN conda install -y -q -c conda-forge galsim numba ngmix esutil lsstdesc.weakle
 # python -c "from pygdsm import GlobalSkyModel" && << not needed as we now see home
 RUN pip install git+https://github.com/mirochaj/ares && \
     pip install git+https://github.com/telegraphic/pygdsm && \
-    conda install -y -q -c conda-forge spiceypy 
+    conda install -y -q -c conda-forge spiceypy pyuvdata>=2.2.2 astropy-healpix
+
+RUN pip install lunarsky && pip install --no-deps pyradiosky>=0.1.2 && \
+   pip install git+git://github.com/aelanman/analytic_diffuse
