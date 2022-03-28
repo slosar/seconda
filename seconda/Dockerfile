@@ -12,7 +12,7 @@
 # run nvidia-smi to see if it works
 #
 
-FROM nvidia/cuda:11.3.0-base
+FROM nvidia/cuda:11.4.2-base-ubuntu20.04
 MAINTAINER seconda@slosar.com
 
 # ---------------------------------------------------------
@@ -72,5 +72,26 @@ RUN pip install git+https://github.com/mirochaj/ares && \
     pip install git+https://github.com/telegraphic/pygdsm && \
     conda install -y -q -c conda-forge spiceypy pyuvdata>=2.2.2 astropy-healpix
 
-RUN pip install lunarsky && pip install --no-deps pyradiosky>=0.1.2 && \
-   pip install git+git://github.com/aelanman/analytic_diffuse
+RUN pip install --no-deps pyradiosky>=0.1.3
+RUN pip install lunarsky>=0.1
+#&& \
+#    pip install git+git://github.com/aelanman/analytic_diffuse
+# RUN python -c "import astropy.coordinates as ac; \
+# from lunarsky.time import Time; \
+# from astropy.time import TimeDelta; \
+# import astropy.units as u; \
+# from lunarsky import LunarTopo; \
+# from lunarsky.moon import MoonLocation; \
+# import numpy as np; \ 
+# loc = MoonLocation.from_selenodetic(lat=22, lon=0.5); \
+# ts1 = np.arange(Time('2025-01-01T00:00:00'), Time('2025-02-01T00:00:00'), TimeDelta(1*u.h)).astype(Time); \
+# ts2 = np.arange(Time('2025-02-01T00:00:00'), Time('2025-03-01T00:00:00'), TimeDelta(1*u.h)).astype(Time); \
+# getsun = lambda ts: [float(ac.get_body('sun',t_).transform_to(LunarTopo(location=loc, obstime=t_)).alt/u.deg) for t_ in ts]; \
+# obj = ac.SkyCoord(ra=15*u.deg, dec=20*u.deg, frame='icrs'); \
+# getobj = lambda ts: [float(obj.transform_to(LunarTopo(location=loc, obstime=t_)).alt/u.deg) for t_ in ts]; \
+# res1 = getsun(ts1) ; \
+# transit1 = ts1[np.argmax(res1)] ; \
+# res2 = getsun(ts2) ; \
+# transit2 = ts2[np.argmax(res2)] ; \
+# print(transit2-transit1) "
+
