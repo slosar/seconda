@@ -3,7 +3,7 @@ if [ $HOSTNAME == "kosovel" ]; then
 else
     export DOCKER_OPTS=""
 fi
-export DOCKER_ENV="-e ARES -e HOME -e PYTHONPATH -v /home/anze:/home/anze -v /tmp/.X11-unix:/tmp/.X11-unix --user $(id -u):$(id -g)"
+export DOCKER_ENV="-e ARES -e HOME -e PYTHONPATH -e LD_LIBRARY_PATH -v /home/anze:/home/anze -v /tmp/.X11-unix:/tmp/.X11-unix --user $(id -u):$(id -g)"
 #-v /home/anze/work/lusee/lunarsky_data:/opt/conda/lib/python3.8/site-packages/lunarsky/data 
 
 sbash() { docker run  $DOCKER_ENV $DOCKER_OPTS -w $PWD  -it slosar/seconda /usr/bin/bash $@; }
