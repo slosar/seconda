@@ -15,7 +15,7 @@ RUN pip install healpy && \
     pip install corner
 RUN pip install git+https://github.com/mirochaj/ares 
 RUN pip install git+https://github.com/telegraphic/pygdsm 
-RUN pip install lunarsky>=0.1
+RUN pip install lunarsky==0.1.2
 RUN pip install pyerfa
 RUN pip install git+https://github.com/radiocosmology/caput
 
