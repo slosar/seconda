@@ -1,5 +1,6 @@
 if [ $HOSTNAME == "kosovel" ]; then
-    export DOCKER_OPTS="--gpus all"
+    export DOCKER_OPTS=""
+    #--gpus all" broken for the time being
 else
     export DOCKER_OPTS=""
 fi
@@ -11,7 +12,7 @@ spython() { docker run  $DOCKER_ENV $DOCKER_OPTS -w $PWD -e DISPLAY=$DISPLAY  -i
 sipython() { docker run $DOCKER_ENV $DOCKER_OPTS -w $PWD -e DISPLAY=$DISPLAY -it slosar/seconda ipython $@; }
 spip() { docker run $DOCKER_ENV $DOCKER_OPTS -w $PWD -it slosar/seconda pip $@; }
 adstex() { docker run -v $PWD:/here -e ADS_API_TOKEN -it slosar/seconda adstex /here/"$1";}
-snotebook() { port=$1; [ -z "$port" ] && port=9100;  docker run $DOCKER_OPTS  $DOCKER_ENV -w $PWD -itp $port:$port slosar/seconda /bin/bash -c "/opt/conda/bin/jupyter notebook  --ip='*' --port=$port --no-browser --NotebookApp.token='' "; }
+snotebook() { port=$1; [ -z "$port" ] && port=9100;  docker run $DOCKER_OPTS  $DOCKER_ENV -w $PWD -itp $port:$port slosar/seconda /bin/bash -c "/opt/conda/bin/jupyter lab  --ip='*' --port=$port --no-browser --NotebookApp.token='' "; }
 
 
 
