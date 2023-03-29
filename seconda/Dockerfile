@@ -26,7 +26,7 @@ RUN pip install lunarsky==0.1.2
 RUN pip install pyerfa
 RUN pip install showyourwork
 RUN cd /opt/conda/lib && rm libstdc++.so.6.0.29 && cp /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30 . && ln -sf libstdc++.so.6.0.30 libstdc++.so.6 && ln -sf libstdc++.so.6.0.30 libstdc++.so
-
+RUN pip install pyvcd
 
 #COPY hpwin.py .
 #RUN python hpwin.py
